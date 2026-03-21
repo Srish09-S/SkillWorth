@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-hack-green: #00ff41;
+  --color-hack-blue: #00e5ff;
+  --color-hack-yellow: #fbbf24;
+  --shadow-neo: 8px 8px 0px 0px rgba(0,0,0,1);
+  --font-space: 'Space Grotesque', sans-serif;
+}
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesque:wght@400;700;900&display=swap');
+  
+  body {
+    @apply bg-[#0f0f0f] text-white overflow-x-hidden;
+    font-family: var(--font-space);
+  }
+
+  /* Permanent CRT Scanline Effect */
+  body::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 9999;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    opacity: 0.15;
+  }
+}
+
+@layer components {
+  .neo-brutal {
+    @apply border-4 border-black bg-white text-black transition-all duration-200;
+    box-shadow: var(--shadow-neo);
+  }
+  
+  .neo-brutal:hover {
+    @apply translate-x-[2px] translate-y-[2px];
+    box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+  }
+
+  .glitch-text:hover {
+    animation: glitch 0.3s infinite;
+    @apply text-hack-green;
+  }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  25% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* Hardcoded Neon React Flow Controls */
+.react-flow__controls-button {
+  background-color: var(--color-hack-green) !important;
+  border: 3px solid black !important;
+  border-bottom-width: 5px !important;
+  box-shadow: 4px 4px 0px black !important;
+  fill: black !important;
+}
+
+.react-flow__controls-button:hover {
+  background-color: var(--color-hack-blue) !important;
+}
